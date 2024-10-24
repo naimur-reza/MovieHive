@@ -1,5 +1,5 @@
 import MovieCard from "./Card/MovieCard";
-import { TMovie } from "@/types/movieType";
+import { TMovie } from "@/types/types";
 
 async function getMovies() {
   const res = await fetch(
@@ -17,7 +17,7 @@ export default async function Movies() {
   const movies = await getMovies();
 
   return (
-    <div className="container py-10 max-w-6xl mx-auto">
+    <div className="container py-20 max-w-6xl mx-auto">
       <h1 className="text-xl lg:text-3xl mb-5 font-medium">Popular</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {movies.map((movie) => (

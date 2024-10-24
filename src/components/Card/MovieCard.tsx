@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TMovie } from "@/types/movieType";
+import { TMovie } from "@/types/types";
 import Link from "next/link";
 
 type TMovieCardProps = Pick<
@@ -27,13 +27,13 @@ const MovieCard = ({
   return (
     <Card className="w-full max-w-sm mx-auto">
       <CardHeader className="p-0">
-        <div className="relative aspect-[2/3] w-full">
+        <div className="relative aspect-[2/3] w-full overflow-hidden">
           <Link href={`/details/${id}`}>
             <Image
               src={`https://image.tmdb.org/t/p/w500${poster_path}`}
               alt={title}
               fill
-              className="object-cover rounded-t-lg"
+              className="object-cover rounded-t-lg hover:scale-105 transition-transform duration-300"
             />
           </Link>
         </div>

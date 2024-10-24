@@ -18,7 +18,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <div className="border-b">
+    <div className="border-b border-gray-700/50 fixed top-0 w-full z-10 bg-black/50 backdrop-blur-sm">
       <div className="container h-14 flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
