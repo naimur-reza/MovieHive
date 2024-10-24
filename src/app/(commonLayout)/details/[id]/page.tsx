@@ -64,14 +64,13 @@ export default async function Page({ params }: { params: { id: string } }) {
             </div>
             <div className="lg:w-2/3">
               <h1 className="text-4xl font-bold mb-4">{movie.title}</h1>
-              <div className="flex flex-wrap items-center gap-4 mb-6">
-                <Badge
-                  variant="secondary"
-                  className="text-lg px-3 py-1 text-yellow-500"
-                >
+              <div className="flex flex-wrap items-center gap-4 mb-6 ">
+                <div className="font-medium text-yellow-500 flex items-center gap-1">
+                  IMDB_
                   {movie.vote_average.toFixed(1)}
                   <Star className="ml-1 w-4 h-4 fill-current" />
-                </Badge>
+                </div>
+
                 <span className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   {movie.release_date}

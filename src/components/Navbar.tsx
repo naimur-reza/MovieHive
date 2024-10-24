@@ -33,7 +33,11 @@ export default function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-              <SheetTitle>Logo</SheetTitle>
+              <SheetTitle>
+                <div className="font-bold text-xl text-yellow-500">
+                  <Link href="/">MovieHive</Link>
+                </div>
+              </SheetTitle>
 
               <nav className="flex flex-col space-y-4 mt-5">
                 <Link
@@ -60,7 +64,9 @@ export default function Navbar() {
               </nav>
             </SheetContent>
           </Sheet>
-          <div className="font-bold text-xl text-yellow-500">MovieHive</div>
+          <div className="font-bold text-xl text-yellow-500">
+            <Link href="/">MovieHive</Link>
+          </div>
         </div>
 
         <div className="flex items-center space-x-4">
