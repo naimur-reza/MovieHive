@@ -34,8 +34,6 @@ export default async function Page({ params }: { params: { id: string } }) {
   const movie = await fetchMovieDetails(params.id);
   const credits = await fetchMovieCredits(params.id);
 
-  console.log(movie);
-
   return (
     <div className=" my-10">
       <MovieInfo movie={movie} />
