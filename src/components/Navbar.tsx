@@ -2,8 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu, Moon, Search, Sun, X } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Menu, Search, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,10 +12,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Switch } from "@/components/ui/switch";
+import { ModeToggle } from "./ToggleTheme";
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -62,7 +60,7 @@ export default function Navbar() {
               </nav>
             </SheetContent>
           </Sheet>
-          <div className="font-bold text-xl">Logo</div>
+          <div className="font-bold text-xl text-yellow-500">MovieHive</div>
         </div>
 
         <div className="flex items-center space-x-4">
@@ -75,31 +73,7 @@ export default function Navbar() {
             />
           </div>
 
-          <Switch
-            checked={theme === "dark"}
-            onCheckedChange={() =>
-              setTheme(theme === "dark" ? "light" : "dark")
-            }
-            className="hidden sm:flex"
-          >
-            <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            <span className="sr-only">Toggle theme</span>
-          </Switch>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="sm:hidden"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-            <span className="sr-only">Toggle theme</span>
-          </Button>
+          <ModeToggle />
         </div>
       </div>
     </div>

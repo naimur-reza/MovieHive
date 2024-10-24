@@ -1,31 +1,29 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { MovieCard } from "./Card/MovieCard";
+import MovieCard from "./Card/MovieCard";
 import { TMovie } from "@/types/movieType";
 
-const Movies = () => {
-  const [movies, setMovies] = useState<TMovie[]>();
+async function getMovies() {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
+    { next: { revalidate: 3600 } } // Revalidate every hour
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch movies");
+  }
+  const data = await res.json();
+  return data.results as TMovie[];
+}
 
-  const fetchMovies = async () => {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
-    );
-    const data = await res.json();
-    setMovies(data.results);
-  };
-
-  useEffect(() => {
-    fetchMovies();
-  }, []);
-
-  console.log(movies);
+export default async function Movies() {
+  const movies = await getMovies();
 
   return (
-    <div className="container py-10 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-      {movies && movies.map((movie, key) => <MovieCard key={key} {...movie} />)}
+    <div className="container py-10 max-w-6xl mx-auto">
+      <h1 className="text-xl lg:text-3xl mb-5 font-medium">Popular</h1>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} {...movie} />
+        ))}
+      </div>
     </div>
   );
-};
-
-export default Movies;
+}
