@@ -1,6 +1,7 @@
 import { TMovie } from "@/types/types";
 import MovieInfo from "./components/MovieInfo";
 import Recommendations from "./components/Recommendations";
+import { fetchMovieCredits, fetchMovieDetails } from "@/app/api/movies/movies";
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -12,20 +13,6 @@ export async function generateStaticParams() {
   return movies.map((movie) => ({
     id: String(movie.id),
   }));
-}
-
-async function fetchMovieDetails(id: string) {
-  const movie: TMovie = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
-  ).then((res) => res.json());
-  return movie;
-}
-
-async function fetchMovieCredits(id: string) {
-  const credits = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
-  ).then((res) => res.json());
-  return credits;
 }
 
 export default async function Page({ params }: { params: { id: string } }) {

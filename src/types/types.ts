@@ -39,3 +39,7 @@ export type TCredits = {
   id: number;
   cast: TCast[];
 };
+
+export type TSearchParams = {
+  search: string;
+};

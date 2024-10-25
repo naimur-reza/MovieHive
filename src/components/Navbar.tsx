@@ -2,10 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Sheet,
   SheetContent,
@@ -13,6 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ModeToggle } from "./ToggleTheme";
+import SearchMovie from "./SearchMovie";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -70,14 +70,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center space-x-4">
-          <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search"
-              className="w-[200px] sm:w-[300px] pl-8"
-            />
-          </div>
+          <SearchMovie />
 
           <ModeToggle />
         </div>

@@ -1,20 +1,9 @@
+import { getMovies } from "@/app/api/movies/movies";
 import MovieCard from "./Card/MovieCard";
-import { TMovie } from "@/types/types";
+import { TSearchParams } from "@/types/types";
 
-async function getMovies() {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
-    { next: { revalidate: 3600 } } // Revalidate every hour
-  );
-  if (!res.ok) {
-    throw new Error("Failed to fetch movies");
-  }
-  const data = await res.json();
-  return data.results as TMovie[];
-}
-
-export default async function Movies() {
-  const movies = await getMovies();
+const Movies = async ({ searchParams }: { searchParams: TSearchParams }) => {
+  const movies = await getMovies(searchParams);
 
   return (
     <div className="container py-20 max-w-6xl mx-auto">
@@ -26,4 +15,6 @@ export default async function Movies() {
       </div>
     </div>
   );
-}
+};
+
+export default Movies;

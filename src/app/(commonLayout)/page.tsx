@@ -1,9 +1,10 @@
 import Movies from "@/components/Movies";
+import { TSearchParams } from "@/types/types";
 
-const Home = () => {
+const Home = ({ searchParams }: { searchParams: TSearchParams }) => {
   return (
     <>
-      <Movies />
+      <Movies searchParams={searchParams} />
     </>
   );
 };
