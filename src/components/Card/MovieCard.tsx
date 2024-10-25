@@ -25,9 +25,9 @@ const MovieCard = ({
   vote_average,
 }: TMovieCardProps) => {
   return (
-    <Card className="w-full max-w-sm mx-auto">
+    <Card className="w-full max-w-lg mx-auto">
       <CardHeader className="p-0">
-        <div className="relative aspect-[2/3] w-full overflow-hidden">
+        <div className="relative aspect-square lg:aspect-[2/3] w-full overflow-hidden">
           <Link href={`/details/${id}`}>
             <Image
               src={`https://image.tmdb.org/t/p/w500${poster_path}`}

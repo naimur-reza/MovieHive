@@ -1,6 +1,4 @@
 import { TMovie } from "@/types/types";
-
-import Casts from "./components/Casts";
 import MovieInfo from "./components/MovieInfo";
 import Recommendations from "./components/Recommendations";
 
@@ -36,8 +34,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   return (
     <div className=" my-10">
-      <MovieInfo movie={movie} />
-      <Casts casts={credits.cast} />
+      <MovieInfo movie={movie} casts={credits.cast} />
       <Recommendations movieId={params.id} />
     </div>
   );

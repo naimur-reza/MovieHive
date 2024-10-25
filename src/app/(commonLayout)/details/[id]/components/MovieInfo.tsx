@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { Star, Calendar, Clock, Users, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { TMovie } from "@/types/types";
+import { TCast, TMovie } from "@/types/types";
+import Casts from "./Casts";
 
-const MovieInfo = ({ movie }: { movie: TMovie }) => {
+const MovieInfo = ({ movie, casts }: { movie: TMovie; casts: TCast[] }) => {
   return (
     <div className="relative  ">
       <div className="absolute inset-0 overflow-hidden">
@@ -19,7 +20,7 @@ const MovieInfo = ({ movie }: { movie: TMovie }) => {
       <div className="relative container py-8 md:py-12 lg:py-20 max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-1/3">
-            <div className="relative lg:w-[80%] w-full lg:h-96 h-[500px] border rounded-lg border-gray-700/60">
+            <div className="relative max-lg:hidden aspect-[2/3] border rounded-lg border-gray-700/60">
               <Image
                 src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
                 alt={movie.title}
@@ -33,8 +34,7 @@ const MovieInfo = ({ movie }: { movie: TMovie }) => {
             <h1 className="text-4xl font-bold mb-4">{movie.title}</h1>
             <div className="flex flex-wrap items-center gap-4 mb-6 ">
               <div className="font-medium text-yellow-500 flex items-center gap-1">
-                IMDB_
-                {movie.vote_average.toFixed(1)}
+                IMDB: {movie.vote_average.toFixed(1)}
                 <Star className="ml-1 w-4 h-4 fill-current" />
               </div>
 
@@ -51,7 +51,7 @@ const MovieInfo = ({ movie }: { movie: TMovie }) => {
                 {movie.vote_count} votes
               </span>
             </div>
-            <p className="text-lg mb-6 leading-relaxed text-opacity-80">
+            <p className="lg:text-lg mb-6 leading-relaxed text-opacity-80">
               {movie.overview}
             </p>
             <div className="grid sm:grid-cols-2 gap-6 mb-6">
@@ -69,6 +69,7 @@ const MovieInfo = ({ movie }: { movie: TMovie }) => {
                 </div>
               </div>
             </div>
+            <Casts casts={casts} />
           </div>
         </div>
       </div>
