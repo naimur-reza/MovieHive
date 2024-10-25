@@ -1,20 +1,18 @@
 import { TMovie, TSearchParams } from "@/types/types";
 
-export async function getMovies(searchParams: TSearchParams) {
-  const { search } = searchParams;
-  let res;
+export async function getMovies(
+  searchParams: TSearchParams & { page?: number }
+) {
+  const { search, page = 1 } = searchParams;
+  let url;
 
   if (search) {
-    res = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&query=${search}`,
-      { next: { revalidate: 3600 } } // Revalidate every hour
-    );
+    url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&query=${search}&page=${page}`;
   } else {
-    res = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
-      { next: { revalidate: 3600 } } // Revalidate every hour
-    );
+    url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&page=${page}`;
   }
+
+  const res = await fetch(url, { next: { revalidate: 3600 } });
 
   if (!res.ok) {
     throw new Error("Failed to fetch movies");
