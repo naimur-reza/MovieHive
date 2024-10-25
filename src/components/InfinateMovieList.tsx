@@ -37,9 +37,11 @@ export default function InfiniteMovieList({
   }, [inView, loadMoreMovies]);
 
   return (
-    <div className="container py-10 max-w-6xl mx-auto">
-      <h1 className="text-xl lg:text-3xl mb-5 font-medium">Popular Movies</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    <div className="container py-20 max-w-6xl mx-auto">
+      <h1 className="text-xl lg:text-3xl mb-5 font-medium border-l-4 pl-2 border-yellow-500">
+        Popular Movies
+      </h1>
+      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
         {movies.map((movie) => (
           <MovieCard key={movie.id} {...movie} />
         ))}

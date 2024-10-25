@@ -3,11 +3,9 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { TMovie } from "@/types/types";
 import Link from "next/link";
 
@@ -27,7 +25,7 @@ const MovieCard = ({
   return (
     <Card className="w-full max-w-lg mx-auto">
       <CardHeader className="p-0">
-        <div className="relative aspect-square lg:aspect-[2/3] w-full overflow-hidden">
+        <div className="relative aspect-[1/1.5] lg:aspect-[2/2.7] w-full overflow-hidden">
           <Link href={`/details/${id}`}>
             <Image
               src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -38,18 +36,20 @@ const MovieCard = ({
           </Link>
         </div>
       </CardHeader>
-      <CardContent className="p-4">
-        <CardTitle className="text-lg line-clamp-1">{title}</CardTitle>
-        <CardDescription className="line-clamp-2 mt-2">
+      <CardContent className="p-2 lg:p-4">
+        <div className="text-xs lg:text-sm flex items-center justify-between font-normal mb-2 lg:mb-3">
+          {new Date(release_date).getFullYear()}
+
+          <div className="flex items-center">⭐ {vote_average.toFixed(1)}</div>
+        </div>
+        <CardTitle className="text-xs  font-normal lg:font-medium md:text-[15px] line-clamp-1 ">
+          {title}
+        </CardTitle>
+
+        <CardDescription className="line-clamp-2 mt-2 max-lg:hidden text-sm">
           {overview}
         </CardDescription>
       </CardContent>
-      <CardFooter className="flex justify-between items-center p-4">
-        <Badge variant="secondary">
-          {new Date(release_date).getFullYear()}
-        </Badge>
-        <Badge variant="outline">⭐ {vote_average.toFixed(1)}</Badge>
-      </CardFooter>
     </Card>
   );
 };
