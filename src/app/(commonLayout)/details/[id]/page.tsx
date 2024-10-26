@@ -2,16 +2,11 @@ import { TMovie } from "@/types/types";
 import MovieInfo from "./components/MovieInfo";
 import Recommendations from "./components/Recommendations";
 import { fetchMovieCredits, fetchMovieDetails } from "@/app/api/movies/movies";
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import Loading from "./loading";
 
 export const revalidate = 60;
 export const dynamicParams = true;
-
-const DynamicSearchParams = dynamic(
-  () => import("@/components/DynamicSearchParams"),
-  { ssr: false }
-);
 
 export async function generateStaticParams() {
   const movies: TMovie[] = await fetch(
@@ -27,13 +22,11 @@ export default async function Page({ params }: { params: { id: string } }) {
   const credits = await fetchMovieCredits(params.id);
 
   return (
-    <div className=" my-10">
-      <MovieInfo movie={movie} casts={credits.cast} />
-      <Suspense fallback={<div>Loading recommendations...</div>}>
-        <DynamicSearchParams>
-          <Recommendations movieId={params.id} />
-        </DynamicSearchParams>
-      </Suspense>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <div className=" my-10">
+        <MovieInfo movie={movie} casts={credits.cast} />
+        <Recommendations movieId={params.id} />
+      </div>
+    </Suspense>
   );
 }

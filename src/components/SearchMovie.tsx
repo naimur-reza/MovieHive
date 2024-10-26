@@ -3,7 +3,7 @@
 import { Search } from "lucide-react";
 import { Input } from "./ui/input";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import clsx from "clsx";
 
@@ -34,7 +34,7 @@ const SearchMovie = () => {
   );
 
   return (
-    <Suspense>
+    <>
       <Search
         onClick={() => setShowSearch(!showSearch)}
         className={clsx(
@@ -71,7 +71,7 @@ const SearchMovie = () => {
           className="w-full sm:w-[300px] pl-8"
         />
       </div>
-    </Suspense>
+    </>
   );
 };
 

@@ -48,13 +48,6 @@ export default function Navbar() {
                   Home
                 </Link>
                 <Link
-                  href="/popular"
-                  className="text-lg font-medium hover:underline"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Popular
-                </Link>
-                <Link
                   href="/watchlist"
                   className="text-lg font-medium hover:underline"
                   onClick={() => setIsOpen(false)}

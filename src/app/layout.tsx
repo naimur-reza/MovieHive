@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/Providers/NextThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,7 +23,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Suspense fallback={<div>Loading...</div>}> {children}</Suspense>
         </ThemeProvider>
         <Toaster />
       </body>

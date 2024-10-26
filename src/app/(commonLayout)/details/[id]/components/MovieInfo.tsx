@@ -1,38 +1,11 @@
-"use client";
-
 import Image from "next/image";
 import { Star, Calendar, Clock, Users, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TCast, TMovie } from "@/types/types";
 import Casts from "./Casts";
-
-import { useEffect, useState } from "react";
-
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
-import { useWatchlistStore } from "@/app/store/watchlistStore";
+import HandleWatchlistButton from "./HandleWatchlistButton";
 
 const MovieInfo = ({ movie, casts }: { movie: TMovie; casts: TCast[] }) => {
-  const { addToWatchlist, removeFromWatchlist, isInWatchlist } =
-    useWatchlistStore();
-  const [isInWatchlistState, setIsInWatchlistState] = useState(false);
-  const { toast } = useToast();
-
-  useEffect(() => {
-    setIsInWatchlistState(isInWatchlist(movie.id));
-  }, [movie.id, isInWatchlist]);
-
-  const handleWatchlistToggle = () => {
-    if (isInWatchlistState) {
-      removeFromWatchlist(movie.id);
-      setIsInWatchlistState(false);
-      toast({ title: "Removed from watchlist" });
-    } else {
-      addToWatchlist(movie);
-      setIsInWatchlistState(true);
-      toast({ title: "Added to watchlist" });
-    }
-  };
   return (
     <div className="relative  ">
       <div className="absolute inset-0 overflow-hidden">
@@ -99,11 +72,7 @@ const MovieInfo = ({ movie, casts }: { movie: TMovie; casts: TCast[] }) => {
                 </div>
               </div>
             </div>
-            <Button className="mb-5" onClick={handleWatchlistToggle}>
-              {isInWatchlistState
-                ? "Remove from Watchlist"
-                : "Add to Watchlist"}
-            </Button>
+            <HandleWatchlistButton movie={movie} />
           </div>
         </div>
         <Casts casts={casts} />

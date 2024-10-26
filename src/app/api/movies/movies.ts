@@ -12,7 +12,10 @@ export async function getMovies(
     url = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&page=${page}`;
   }
 
-  const res = await fetch(url, { next: { revalidate: 3600 } });
+  const res = await fetch(url, {
+    next: { revalidate: 3600 },
+    cache: "force-cache",
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch movies");
@@ -23,14 +26,17 @@ export async function getMovies(
 
 export async function fetchMovieDetails(id: string) {
   const movie: TMovie = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
+
+    { next: { revalidate: 3600 }, cache: "force-cache" }
   ).then((res) => res.json());
   return movie;
 }
 
 export async function fetchMovieCredits(id: string) {
   const credits = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
+    { next: { revalidate: 3600 }, cache: "force-cache" }
   ).then((res) => res.json());
   return credits;
 }

@@ -1,11 +1,11 @@
 import Navbar from "@/components/Navbar";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 
 const CommonLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Navbar />
-      {children}
+      <Suspense fallback={<div>Loading...</div>}> {children}</Suspense>
     </>
   );
 };
