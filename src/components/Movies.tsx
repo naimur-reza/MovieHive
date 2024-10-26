@@ -6,9 +6,7 @@ import InfiniteMovieList from "./InfinateMovieList";
 const Movies = async ({ searchParams }: { searchParams: TSearchParams }) => {
   const movies = await getMovies(searchParams);
 
-  return (
-    <InfiniteMovieList initialMovies={movies} searchParams={searchParams} />
-  );
+  return <InfiniteMovieList initialMovies={movies} />;
 };
 
 export default Movies;

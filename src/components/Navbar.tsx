@@ -18,7 +18,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <div className="border-b border-gray-700/50 fixed top-0 w-full z-10 bg-black/50 backdrop-blur-sm">
+    <div className="border-b border-gray-700/20 dark:border-gray-700/50 bg-white/50 dark:bg-black/50 fixed top-0 w-full z-10 bg-opacity-55 backdrop-blur-sm">
       <div className="container h-14 flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -64,7 +64,7 @@ export default function Navbar() {
               </nav>
             </SheetContent>
           </Sheet>
-          <div className="font-bold text-xl text-yellow-500">
+          <div className="font-bold text-xl text-yellow-500 ">
             <Link href="/">MovieHive</Link>
           </div>
         </div>
