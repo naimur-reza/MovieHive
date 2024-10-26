@@ -12,6 +12,7 @@ const nextConfig = {
         pathname: "/t/p/**",
       },
     ],
+    unoptimized: true,
   },
   reactStrictMode: true,
 };

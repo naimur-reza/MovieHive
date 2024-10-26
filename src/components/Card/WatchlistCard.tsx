@@ -59,7 +59,7 @@ const WatchlistCard = ({
           {overview}
         </p>
         <div className="flex justify-between items-center">
-          <Link href={`/details/${id}`}>
+          <Link href={`/details/${id}`} className="hidden md:block">
             <Button variant="outline" size="sm">
               View Details
             </Button>
