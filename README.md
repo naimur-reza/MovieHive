@@ -1,37 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MovieHive
 
-## Getting Started
+MovieHive is a dynamic movie information and management platform where users can search for movies, view details, and manage a personal watchlist. Built with modern web development technologies, MovieHive emphasizes performance and user experience with a focus on interactive and responsive design.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Movie Search and Details**: Search for movies, view detailed information, and browse recommendations.
+- **Personal Watchlist**: Add or remove movies from a personal watchlist, with state management via Zustand and an Optimistic UI for smooth interactions.
+- **Responsive UI**: Fully responsive layout to accommodate various screen sizes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **React**: Core UI development with reusable components.
+- **Next.js**: Server-side rendering and routing.
+- **Tailwind CSS**: Responsive styling and design.
+- **Zustand**: State management for the watchlist and other global states.
+- **TanStack Query**: Efficient data fetching, caching, and synchronization with server.
+- **TypeScript**: Type safety for predictable and error-resistant code.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Future Enhancements
 
-## Learn More
+If given more time, additional features would include:
 
-To learn more about Next.js, take a look at the following resources:
+- **Backend Integration**: Database integration for persistent storage of user data.
+- **Optimistic UI Enhancements**: Further refine UI responsiveness.
+- **Improved SEO**: Server-side rendering for enhanced search engine optimization.
+- **Trailer View**: Integrate trailer previews to give users a glimpse of each movie.Trailer View: Integrate trailer previews to give users a glimpse of each movie.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Installation and Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Follow these instructions to set up and run MovieHive locally:
 
-## Deploy on Vercel
+### Prerequisites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Node.js (v16 or later)
+- npm or yarn
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# nextjs-movieapp" 
+### Getting Started
+
+To get a local copy of the project up and running, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/naimur-reza/libroshelf
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd libroshelf
+   ```
+3. Install the dependencies:
+   ```bash
+   bun install
+   ```
+4. Run the application:
+   ```bash
+   bun dev
+   ```
+5. Open your browser and visit http://localhost:3000
