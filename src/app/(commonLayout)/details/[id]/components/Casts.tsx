@@ -18,15 +18,17 @@ const Casts = ({ casts }: { casts: TCast[] }) => {
           <TooltipProvider key={cast.id}>
             <Tooltip>
               <TooltipTrigger asChild>
-                <div className="border p-3  rounded-lg border-gray-700/50">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/w200${cast.profile_path}`}
-                    alt={cast.name}
-                    width={50}
-                    height={50}
-                    className="rounded-md shadow-md w-full"
-                  />
-                  <p className="mt-2 text-sm font-semibold text-center ">
+                <div className="border border-gray-300 dark:border-gray-700/50 p-2 rounded-lg">
+                  <div className="border  rounded-lg border-gray-300 dark:border-gray-700/50 w-full ">
+                    <Image
+                      src={`https://image.tmdb.org/t/p/w200${cast.profile_path}`}
+                      alt={cast.name}
+                      height={120}
+                      width={100}
+                      className="rounded-md shadow-md w-full h-full"
+                    />
+                  </div>
+                  <p className="mt-2 text-sm font-medium text-center ">
                     {cast.name}
                   </p>
                 </div>

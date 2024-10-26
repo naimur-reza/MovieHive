@@ -19,7 +19,7 @@ const Recommendations = async ({ movieId }: { movieId: string }) => {
     <div className=" container py-20 max-w-6xl mx-auto">
       <h1 className="text-2xl font-semibold mb-5"> More like this </h1>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
         {recommendations.map((movie) => (
           <MovieCard key={movie.id} {...movie} />
         ))}

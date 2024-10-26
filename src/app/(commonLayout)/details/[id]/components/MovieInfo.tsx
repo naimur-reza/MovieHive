@@ -15,7 +15,7 @@ const MovieInfo = ({ movie, casts }: { movie: TMovie; casts: TCast[] }) => {
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background to-background/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background to-background/60 " />
       </div>
       <div className="relative container py-8 md:py-12 lg:py-20 max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8">
@@ -31,9 +31,11 @@ const MovieInfo = ({ movie, casts }: { movie: TMovie; casts: TCast[] }) => {
             </div>
           </div>
           <div className="lg:w-2/3">
-            <h1 className="text-4xl font-bold mb-4">{movie.title}</h1>
-            <div className="flex flex-wrap items-center gap-4 mb-6 ">
-              <div className="font-medium text-yellow-500 flex items-center gap-1">
+            <h1 className="text-2xl lg:text-4xl font-bold mb-4">
+              {movie.title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 mb-6 text-sm md:text-base">
+              <div className="font-medium text-yellow-300 dark:text-yellow-500 flex items-center gap-1">
                 IMDB: {movie.vote_average.toFixed(1)}
                 <Star className="ml-1 w-4 h-4 fill-current" />
               </div>
@@ -51,7 +53,7 @@ const MovieInfo = ({ movie, casts }: { movie: TMovie; casts: TCast[] }) => {
                 {movie.vote_count} votes
               </span>
             </div>
-            <p className="lg:text-lg mb-6 leading-relaxed text-opacity-80">
+            <p className="text-sm md:text-lg mb-6 leading-relaxed text-opacity-80">
               {movie.overview}
             </p>
             <div className="grid sm:grid-cols-2 gap-6 mb-6">

@@ -57,7 +57,7 @@ export default function InfiniteMovieList({
       {movies.length === 0 && !isLoading ? (
         <p>No movies found. Try a different search term.</p>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
           {movies.map((movie) => (
             <MovieCard key={movie.id} {...movie} />
           ))}
