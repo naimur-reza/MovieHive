@@ -25,13 +25,15 @@ const MovieCard = ({
   return (
     <Card className="w-full max-w-lg mx-auto">
       <CardHeader className="p-0">
-        <div className="relative aspect-[1/1.5] lg:aspect-[2/2.7] w-full overflow-hidden">
+        <div className="rounded-t-lg  w-full overflow-hidden relative aspect-[1/1.5] lg:aspect-[2/2.7]">
           <Link href={`/details/${id}`}>
             <Image
               src={`https://image.tmdb.org/t/p/w500${poster_path}`}
               alt={title}
-              fill
-              className="object-cover rounded-t-lg hover:scale-105 transition-transform duration-300"
+              height={500}
+              width={500}
+              sizes="100vw, 100vh"
+              className="object-cover rounded-t-lg hover:scale-105 transition-transform duration-300 h-full w-full"
             />
           </Link>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 import { TMovie } from "@/types/types";
 import { getMovies } from "@/app/api/movies/movies";
@@ -12,42 +12,68 @@ interface InfiniteMovieListProps {
   initialMovies: TMovie[];
 }
 
+const LoadingIndicator = () => (
+  <div className="flex justify-center mt-8">
+    <Loader2 className="animate-spin" />
+  </div>
+);
+
 export default function InfiniteMovieList({
   initialMovies,
 }: InfiniteMovieListProps) {
   const [movies, setMovies] = useState<TMovie[]>(initialMovies);
-  const [page, setPage] = useState(1);
+  const pageRef = useRef(1);
   const [isLoading, setIsLoading] = useState(false);
+  const isFetchingRef = useRef(false);
+  const hasMoreRef = useRef(true);
   const [ref, inView] = useInView();
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
 
   const loadMovies = useCallback(
     async (reset = false) => {
+      if (isFetchingRef.current || !hasMoreRef.current) return;
+      isFetchingRef.current = true;
       setIsLoading(true);
-      const newPage = reset ? 1 : page + 1;
-      const newMovies = await getMovies({
-        search: search || "",
-        page: newPage,
-      });
-      setMovies((prevMovies) =>
-        reset ? newMovies : [...prevMovies, ...newMovies]
-      );
-      setPage(newPage);
-      setIsLoading(false);
+      const newPage = reset ? 1 : pageRef.current + 1;
+      try {
+        const newMovies = await getMovies({
+          search: search || "",
+          page: newPage,
+        });
+        if (newMovies.length === 0) {
+          hasMoreRef.current = false;
+        } else {
+          setMovies((prevMovies) =>
+            reset ? newMovies : [...prevMovies, ...newMovies]
+          );
+          pageRef.current = newPage;
+        }
+      } catch (error) {
+        console.error("Failed to load movies:", error);
+      } finally {
+        setIsLoading(false);
+        isFetchingRef.current = false;
+      }
     },
-    [page, search]
+    [search]
   );
 
   useEffect(() => {
+    hasMoreRef.current = true;
     loadMovies(true);
-  }, [search]);
+  }, [search, loadMovies]);
 
   useEffect(() => {
-    if (inView) {
+    if (inView && !isFetchingRef.current && hasMoreRef.current) {
       loadMovies();
     }
   }, [inView, loadMovies]);
+
+  const memoizedMovieCards = useMemo(
+    () => movies.map((movie) => <MovieCard key={movie.id} {...movie} />),
+    [movies]
+  );
 
   return (
     <div className="container py-28 max-w-6xl mx-auto">
@@ -58,14 +84,11 @@ export default function InfiniteMovieList({
         <p>No movies found. Try a different search term.</p>
       ) : (
         <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} {...movie} />
-          ))}
+          {memoizedMovieCards}
         </div>
       )}
-      <div ref={ref} className="flex justify-center mt-8">
-        {isLoading && <Loader2 className="animate-spin" />}
-      </div>
+      {isLoading && <LoadingIndicator />}
+      <div ref={ref} />
     </div>
   );
 }

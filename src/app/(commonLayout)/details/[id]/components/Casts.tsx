@@ -10,7 +10,7 @@ import Image from "next/image";
 
 const Casts = ({ casts }: { casts: TCast[] }) => {
   return (
-    <div className="text-xl font-semibold max-w-6xl mx-auto ">
+    <div className="pt:5 lg:pt-10 text-xl font-semibold max-w-6xl mx-auto ">
       <h1 className="text-xl lg:text-2xl font-semibold ">Top Billed Cast</h1>
 
       <div className="grid  grid-cols-3 md:grid-cols-4 lg:grid-cols-6  gap-4 mt-4">
