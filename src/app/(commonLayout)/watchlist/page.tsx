@@ -1,13 +1,18 @@
 "use client";
 
 import { useWatchlistStore } from "@/app/store/watchlistStore";
+import { useEffect } from "react";
 import MovieCard from "@/components/Card/MovieCard";
 import { Separator } from "@/components/ui/separator";
 
 export default function WatchlistPage() {
-  const { watchlist } = useWatchlistStore();
+  const { watchlist, fetchWatchlist } = useWatchlistStore();
 
-  console.log(watchlist);
+  useEffect(() => {
+    if (watchlist.length === 0) {
+      fetchWatchlist();
+    }
+  }, [watchlist.length, fetchWatchlist]);
 
   return (
     <div className="container mx-auto px-4 py-20 text-center space-y-3">
